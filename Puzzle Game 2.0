@@ -1,0 +1,905 @@
+using System.Collections;
+
+using System.Collections.Generic;
+
+using UnityEngine;
+
+using UnityEngine.UI;
+
+
+
+public class TextController : MonoBehaviour
+
+
+
+{
+
+
+
+    public Text text;
+
+    private enum States{welcome,next,cell,mirror,sheets_0,lock_0,cell_mirror,
+
+    sheets_1,lock_1,Corridor_0,corridor_1,corridor_2,corridor_3,stairs_0,stairs_1,
+
+    stairs_2,floor,closet_door,in_closet,courtyard,end};
+
+    private States myState; 
+
+
+
+    void Start()
+
+    {
+
+        myState = States.welcome;
+
+        {
+
+           
+
+        }
+
+        
+
+    }
+
+
+
+    void Update()
+
+    {
+
+       print(myState);
+
+       
+
+            if (myState==States.welcome)
+
+            {
+
+                 state_welcome();
+
+            }
+
+            else if(myState==States.next)
+
+            {
+
+                state_next();
+
+            }
+
+            else if (myState == States.cell)
+
+            {
+
+                 state_cell();
+
+            }
+
+            else if (myState==States.sheets_0)
+
+            {
+
+                state_sheets_0();
+
+            }
+
+            else if (myState==States.sheets_1)
+
+            {
+
+                state_sheets_1();
+
+            }
+
+            else if (myState==States.lock_0)
+
+            {
+
+                state_lock_0();
+
+            }
+
+            else if (myState==States.lock_1)
+
+            {
+
+                state_lock_1();
+
+            }
+
+            else if(myState==States.mirror)
+
+            {
+
+                state_mirror();
+
+            }
+
+            else if(myState==States.cell_mirror)
+
+            {
+
+                state_cell_mirror();
+
+            }
+
+            else if(myState==States.Corridor_0)
+
+            {
+
+                state_corridor_0();
+
+            }
+
+            else if(myState==States.corridor_1)
+
+            {
+
+                state_corridor_1();
+
+            }
+
+            else if(myState==States.corridor_2)
+
+            {
+
+                state_corridor_2();
+
+            }
+
+            else if(myState==States.corridor_3)
+
+            {
+
+                state_corridor_3();
+
+            }
+
+            else if(myState==States.floor)
+
+            {
+
+                state_floor();
+
+            }
+
+            else if(myState==States.stairs_0)
+
+            {
+
+                state_stairs_0();
+
+            }
+
+            else if(myState==States.stairs_1)
+
+            {
+
+                state_stairs_1();
+
+            }
+
+            else if(myState==States.stairs_2)
+
+            {
+
+                state_stairs_2();
+
+            }
+
+            else if(myState==States.closet_door)
+
+            {
+
+                state_closet_door();
+
+            }
+
+            else if(myState==States.in_closet)
+
+            {
+
+                state_in_closet();
+
+            }
+
+            else if(myState==States.courtyard)
+
+            {
+
+                state_courtyard();
+
+            }
+
+            else if (myState==States.end)
+
+            {
+
+                state_end();
+
+            }
+
+         
+
+    }
+
+        
+
+        
+
+        void state_welcome()
+
+        {
+
+            {
+
+            text.text="=======WELCOME TO THE GAME=======" +
+
+            "\n \n \n \n\nPress Enter to Continue";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.Return))
+
+            {
+
+                myState=States.next;
+
+            }
+
+        }
+
+
+
+        void state_next()
+
+        {
+
+            {
+
+            text.text="You were framed for a crime scene.."+
+
+            "and the only way to return to ur peacefull life "+
+
+            "is to escape the prison  without getting caught.."+
+
+            "\n\n\nPress Enter to continue to the game...";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.Return))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+        
+
+        void state_cell()
+
+        {
+
+            
+
+            text.text="You are in your prison cell.."+
+
+            "There are some dirty sheets lying in the bed "+
+
+            "And a Mirror at the wall "+
+
+            "And the door is locked from outside."+
+
+            "(look for clues in cell and devise a plan to escape) "+
+
+            "\n \n \nPress S to view Sheets,L to view Lock,M to look Mirror.";
+
+            
+
+        
+
+            if (Input.GetKeyDown(KeyCode.S))
+
+            {
+
+                myState = States.sheets_0;
+
+            }        
+
+            else if(Input.GetKeyDown(KeyCode.M))
+
+            {
+
+                myState=States.mirror;
+
+            }  
+
+            else if(Input.GetKeyDown(KeyCode.L))
+
+            {
+
+                myState=States.lock_0;
+
+            }
+
+        } 
+
+        
+
+        void state_sheets_0()
+
+        {
+
+           {
+
+                text.text="You cant believe you sleep in these sheets "+
+
+            "surely its time for somebody to change them...."+
+
+            "(the pleasures of prison life i guesss..)"+
+
+            " \n \n \n Press R to Return to roam your cell..";
+
+           }
+
+             if (Input.GetKeyDown(KeyCode.R))
+
+             {
+
+                 myState=States.cell;
+
+             }
+
+        }
+
+        void state_sheets_1()
+
+        {
+
+            {
+
+                text.text="UGHH.... was i always so ugly??"+
+
+                "and holding a mirror in hand doesnt makes these "+
+
+                "sheets looks any bettter..lol\n \n \n"+
+
+                "Press R to return to roam your cell..";
+
+                
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell_mirror;
+
+            }
+
+        }
+
+        void state_mirror()
+
+        {
+
+            {
+
+                text.text="The old mirror on the wall seems loose.."+
+
+                "and coated with dust"+
+
+                
+
+                "\n\n \n \n \nPress T to Take the mirror, or R to Return to roam your cell..";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.T))
+
+            {
+
+                myState=States.cell_mirror;
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+        void state_cell_mirror()
+
+        {
+
+            {
+
+                text.text="You are still in your cell,and want to escape "+
+
+                "There are dirty sheets on bed, Mark left of the mirror on its place "+
+
+                "and the door is still closed \n \n\n"+
+
+                "Press S to view Sheets,or L to view Lock";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.S))
+
+            {
+
+                myState=States.sheets_1;
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.L))
+
+            {
+
+                myState=States.lock_1;
+
+            }
+
+        }
+
+        
+
+
+
+        void state_lock_0()
+
+        {
+
+            {
+
+                text.text="This lock seems the one which uses 4 digit pin"+
+
+                " to unlock the lock...wish i could see the dirty fingerprints "+
+
+                "on lock or something ...maybe that would help me to get outta here \n \n"+
+
+                "Press R to return to roam Your cell..";
+
+            }
+
+             if(Input.GetKeyDown(KeyCode.R))
+
+             {
+
+               myState=States.cell;
+
+             }
+
+        }
+
+        void state_lock_1()
+
+        {
+
+            {
+
+                text.text="You carefully puts the mirror out of the bars.."+
+
+                "and turns the mirror around so you can see the lock"+
+
+                " you notice the dirty fingerprints in the lock and"+
+
+                "guess the lock password.."+"you press the keys  and hear a click sound \n"+
+
+                "\nPress O to Open , or R to Return to roam Your cell..";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.O))
+
+            {
+
+                myState=States.Corridor_0;
+
+            }
+
+            else if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+        void state_corridor_0()
+
+        {
+
+            {
+
+                text.text="you are finally out of ur cell..."+
+
+                "now you are standing at the empty corridor and "+
+
+                "you can see a stairs,floor,and one closet door which is locked \n"+
+
+                " \nPress S to go to stairs,F to check Floor,and C to view Closet door";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.S))
+
+            {
+
+                myState=States.stairs_0;
+
+            }
+
+            else  if(Input.GetKeyDown(KeyCode.F))
+
+            {
+
+                myState=States.floor;
+
+            }
+
+            else  if(Input.GetKeyDown(KeyCode.C))
+
+            {
+
+                myState=States.closet_door;
+
+            }
+
+        }
+
+        void state_stairs_0()
+
+        {
+
+            {
+
+                text.text="There are guards up ahead in the entrance"+
+
+                "you have to fall back..."+
+
+                "\n \n \n \n Press R to Return to the corridor";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.Corridor_0;
+
+            }
+
+            
+
+        }
+
+        void state_closet_door()
+
+        {
+
+            {
+
+                text.text="the door is closed and locked.."+
+
+                "if only you had something sharp to open door.."+
+
+                "\n\n\n\n\nPress R to Return to the corridor..";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.Corridor_0;
+
+            }
+
+
+
+        }
+
+
+
+        void state_floor()
+
+        {
+
+            {
+
+                text.text="you find a hairpin lying on the floor"+
+
+                "it might be usefull somehow..."+
+
+                "\n\n\n\nPress H to pick up the Hairclip,Press R to Return to the corridor";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.Corridor_0;
+
+            }
+
+            else if(Input.GetKeyDown(KeyCode.H))
+
+            {
+
+                myState=States.corridor_1;
+
+            }
+
+        }
+
+        void state_corridor_1()
+
+        {
+
+            {
+
+                text.text="You keep trying to look for more clues"+
+
+                " There are still stairs and closet door.."+
+
+                "there's nothing on the floor anymore as you"+
+
+                " picked up the hairclip"+
+
+                " \n \n\nPress S to go to Stairs,C to check the Closet door";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.S))
+
+            {
+
+                myState=States.stairs_1;
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.C))
+
+            {
+
+                myState=States.in_closet;
+
+            }
+
+        }
+
+        void state_stairs_1()
+
+        {
+
+            {
+
+                text.text="A hairclip is not gonna help you to pass through "+
+
+                "entrance"+
+
+                "\n\n\nPress R to Return to the corridor";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.corridor_1;
+
+            }
+
+
+
+        }
+
+        void state_in_closet()
+
+        {
+
+            {
+
+                text.text="(You can try to unlock the closed door by"+
+
+                "using hairclip)"+
+
+                "you insert the hairclip in the door lock and rotate it"+
+
+                "and you hear a click sound"+
+
+                "\n \n Press O to Open the closet door,R to Return to the corridor";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.O))
+
+            {
+
+                myState=States.corridor_2;
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.corridor_1;
+
+            }
+
+
+
+
+
+        }
+
+        void state_corridor_2()
+
+        {
+
+            {
+
+                text.text="Now the closed door is open and you find a cleaner's dress in it"+
+
+                "\n\n\nPress D to Dress up in cleaners dress,R to decline "+
+
+                "and Return to the corridor";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.D))
+
+            {
+
+                myState=States.corridor_3;
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.corridor_2;
+
+            }
+
+        }
+
+
+
+        void state_stairs_2()
+
+        {
+
+            {
+
+                text.text="Still cant get away from the entrance door "+
+
+                "because of guards watching it.."+
+
+                "\n\n\nPress R to Return to the corridor again..";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.corridor_2;
+
+            }
+
+
+
+        }
+
+
+
+        void state_corridor_3()
+
+        {
+
+            {
+
+                text.text="mhm i dont look quite bad in these clothes "+
+
+                "\n its PERFECT!... cops wont even know its me "+
+
+                "\n\n\nPress W to walk away from the entrance of Prison "+
+
+                "to courtyard, "+
+
+                " R to give up and Return to your life in prison";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.W))
+
+            {
+
+                myState=States.courtyard;
+
+            }
+
+            else if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+
+
+        }
+
+        void state_courtyard()
+
+        {
+
+            {
+
+                text.text="YOU WON! \n \n YOU SUCCESSFULLY ESCAPED THE PRISON!!"+
+
+                "\n\n\n Press A to view the Afterstory";
+
+            }
+
+            {
+
+                if(Input.GetKeyDown(KeyCode.A))
+
+                {
+
+                    myState=States.end;
+
+                }
+
+            }
+
+            
+
+        }
+
+        void state_end()
+
+        {
+
+            {
+
+                text.text="AFTERSTORY!....\n"+
+
+                "your case was declared Misunderstanding at the court "+
+
+                "you were bailed out the next day of your escape "+
+
+                "but after escape you broke the laws of prison "+
+
+                "and you get caught for voilating the prison security "+
+
+                "\n=================GAME OVER================";
+
+            }
+
+        }
+
+
+
+}
