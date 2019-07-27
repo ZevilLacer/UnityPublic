@@ -1,0 +1,455 @@
+using System.Collections;
+
+using System.Collections.Generic;
+
+using UnityEngine;
+
+using UnityEngine.UI;
+
+
+
+public class TextController : MonoBehaviour
+
+
+
+{
+
+
+
+    public Text text;
+
+    private enum States{welcome,next,cell,mirror,sheets_0,lock_0,cell_mirror,sheets_1,lock_1,freedom};
+
+    private States myState; 
+
+
+
+    void Start()
+
+    {
+
+        myState = States.welcome;
+
+        {
+
+           
+
+        }
+
+        
+
+    }
+
+
+
+    void Update()
+
+    {
+
+       print(myState);
+
+       
+
+            if (myState==States.welcome)
+
+            {
+
+                 state_welcome();
+
+            }
+
+            else if(myState==States.next)
+
+            {
+
+                state_next();
+
+            }
+
+            else if (myState == States.cell)
+
+            {
+
+                 state_cell();
+
+            }
+
+            else if (myState==States.sheets_0)
+
+            {
+
+                state_sheets_0();
+
+            }
+
+            else if (myState==States.sheets_1)
+
+            {
+
+                state_sheets_1();
+
+            }
+
+            else if (myState==States.lock_0)
+
+            {
+
+                state_lock_0();
+
+            }
+
+            else if (myState==States.lock_1)
+
+            {
+
+                state_lock_1();
+
+            }
+
+            else if(myState==States.mirror)
+
+            {
+
+                state_mirror();
+
+            }
+
+            else if(myState==States.cell_mirror)
+
+            {
+
+                state_cell_mirror();
+
+            }
+
+            else if(myState==States.freedom)
+
+            {
+
+                state_freedom();
+
+            }
+
+        
+
+    
+
+    }
+
+        
+
+        
+
+        void state_welcome()
+
+        {
+
+            {
+
+            text.text="=======WELCOME TO THE GAME=======" +
+
+            "\n \n \n \n\nPress Enter to Continue";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.Return))
+
+            {
+
+                myState=States.next;
+
+            }
+
+        }
+
+
+
+        void state_next()
+
+        {
+
+            {
+
+            text.text="You were framed for a crime scene.."+
+
+            "and the only way to return to ur peacefull life "+
+
+            "is to escape the prison cell without getting caught.."+
+
+            "\n\n\nPress C to continue to the game...";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.C))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+        
+
+        void state_cell()
+
+        {
+
+            
+
+            text.text="You are in your prison cell.."+
+
+            "There are some dirty sheets lying in the bed "+
+
+            "And a Mirror at the wall "+
+
+            "And the door is locked from outside."+
+
+            "(look for clues in cell and devise a plan to escape) "+
+
+            "\n \n \nPress S to view Sheets,L to view Lock,M to look Mirror.";
+
+            
+
+        
+
+            if (Input.GetKeyDown(KeyCode.S))
+
+            {
+
+                myState = States.sheets_0;
+
+            }        
+
+            else if(Input.GetKeyDown(KeyCode.M))
+
+            {
+
+                myState=States.mirror;
+
+            }  
+
+            else if(Input.GetKeyDown(KeyCode.L))
+
+            {
+
+                myState=States.lock_0;
+
+            }
+
+        } 
+
+        
+
+        void state_sheets_0()
+
+        {
+
+           {
+
+                text.text="You cant believe you sleep in these sheets "+
+
+            "surely its time for somebody to change them...."+
+
+            "(the pleasures of prison life i guesss..)"+
+
+            " \n \n \n Press R to Return to roam your cell..";
+
+           }
+
+             if (Input.GetKeyDown(KeyCode.R))
+
+             {
+
+                 myState=States.cell;
+
+             }
+
+        }
+
+        void state_sheets_1()
+
+        {
+
+            {
+
+                text.text="UGHH.... was i always so ugly??"+
+
+                "and holding a mirror in hand doesnt makes these "+
+
+                "sheets looks any bettter..lol\n \n \n"+
+
+                "Press R to return to roam your cell..";
+
+                
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell_mirror;
+
+            }
+
+        }
+
+        void state_mirror()
+
+        {
+
+            {
+
+                text.text="The old mirror on the wall seems loose.."+
+
+                "and coated with dust"+
+
+                
+
+                "\n\n \n \n \nPress T to Take the mirror, or R to Return to roam your cell..";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.T))
+
+            {
+
+                myState=States.cell_mirror;
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+        void state_cell_mirror()
+
+        {
+
+            {
+
+                text.text="You are still in your cell,and want to escape "+
+
+                "There are dirty sheets on bed, Mark left of the mirror on its place "+
+
+                "and the door is still closed \n \n\n"+
+
+                "Press S to view Sheets,or L to view Lock";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.S))
+
+            {
+
+                myState=States.sheets_1;
+
+            }
+
+            else if (Input.GetKeyDown(KeyCode.L))
+
+            {
+
+                myState=States.lock_1;
+
+            }
+
+        }
+
+        
+
+
+
+        void state_lock_0()
+
+        {
+
+            {
+
+                text.text="This lock seems the one which uses 4 digit pin"+
+
+                " to unlock the lock...wish i could see the dirty fingerprints "+
+
+                "on lock or something ...maybe that would help me to get outta here \n \n"+
+
+                "Press R to return to roam Your cell..";
+
+            }
+
+             if(Input.GetKeyDown(KeyCode.R))
+
+             {
+
+               myState=States.cell;
+
+             }
+
+        }
+
+        void state_lock_1()
+
+        {
+
+            {
+
+                text.text="You carefully puts the mirror out of the bars.."+
+
+                "and turns the mirror around so you can see the lock"+
+
+                " you notice the dirty fingerprints in the lock and"+
+
+                "guess the lock password.."+"you press the keys  and hear a click sound \n"+
+
+                "\nPress O to Open , or R to Return to roam Your cell..";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.O))
+
+            {
+
+                myState=States.freedom;
+
+            }
+
+            else if(Input.GetKeyDown(KeyCode.R))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+        void state_freedom()
+
+        {
+
+            {
+
+                text.text="You are Free!!..\n\n\n"+
+
+                "Press P to play again";
+
+            }
+
+            if(Input.GetKeyDown(KeyCode.P))
+
+            {
+
+                myState=States.cell;
+
+            }
+
+        }
+
+}
