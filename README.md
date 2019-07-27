@@ -1,5 +1,9 @@
 # UnityPublic
 C#Scripts used to make a copy of a 2D game "ARKANOID"
+
+
+
+
 {
 ball_script = script used to move ball
 
