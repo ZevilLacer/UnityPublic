@@ -1,0 +1,71 @@
+
+using UnityEngine;
+
+using System.Collections;
+using UnityEngine.UI;
+
+
+
+public class GuessGame : MonoBehaviour {
+
+
+
+	public int max=1000,min=1,guess;
+    
+    public int MaxGuesses=12;
+
+    public Text text;
+
+
+
+	void Start () 
+    {
+        StartGame();
+
+    }
+
+    void StartGame()
+    {
+        max=1000;
+        min=1;
+        nextguess();
+
+    }
+
+	public void nextguess()
+
+	{
+
+			guess = Random.Range(min,max+1);
+            text.text=guess.ToString();
+            MaxGuesses=MaxGuesses-1;
+            if(MaxGuesses<=0)
+            {
+                Application.LoadLevel("Win");
+            }
+
+
+
+	}
+
+
+    public void GuessHigh()
+    {
+    
+             min = guess;
+
+             nextguess();      
+        
+    }
+
+    public void GuessLow()
+    {
+             max = guess;
+
+		     nextguess();
+    }
+
+
+
+
+}
