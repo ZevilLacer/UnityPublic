@@ -1,2 +1,2 @@
 # UnityPublic
-C#Scripts
+C#Scripts used to make game 
