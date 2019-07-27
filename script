@@ -1,0 +1,109 @@
+using UnityEngine;
+
+using System.Collections;
+
+
+
+public class nowizz : MonoBehaviour {
+
+
+
+	int max=1000,min=1,guess=500;
+
+
+
+	void Start () 
+
+
+
+	{		
+
+			
+
+			game();
+
+		max=max+1;
+
+	}
+
+	void game ()
+
+	{
+
+			print("WELCOME TO THE NUMBER WIZARD CONSOLE GAME");
+
+			print("Pick a number in ur head,without telling me:");
+
+			print("The Highest Number you can pick is " +max);
+
+			print("The lowest Number you can pick is " +min);
+
+
+
+			print("Is the number you picked higher or lower than " +guess);
+
+			print("Press UP Arrow key for higher ,DOWN Arrow key for lower ,RETURN for equal");
+
+
+
+	}
+
+	void nextguess()
+
+	{
+
+			guess=(max+min)/2;
+
+            print("Higher or lower than " +guess);
+
+			print("Press UP Arrow key for higher,DOWN Arrow key for lower ,enter for equal");
+
+
+
+	}
+
+
+
+
+
+	void Update () 
+
+
+
+	{
+
+		if (Input.GetKeyDown(KeyCode.UpArrow))
+
+        {
+
+            min = guess;
+
+            nextguess();
+
+        }
+
+
+
+		if (Input.GetKeyDown(KeyCode.DownArrow))
+
+        {
+
+			max = guess;
+
+			nextguess();
+
+        }
+
+
+
+		if (Input.GetKeyDown(KeyCode.Return))
+
+        {
+
+            print("The no. you guessed is"+guess);
+
+        }
+
+	}
+
+}
